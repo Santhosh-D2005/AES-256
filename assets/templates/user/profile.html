@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Profile</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'user/vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'user/vendors/base/vendor.bundle.base.css' %}">
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'user/css/style.css' %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static 'user/images/favicon.png' %}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+</head>
+
+<body>
+  <div class="container-scroller">
+    <!-- partial:../../partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo" href="{% url 'user_home' %}"><img src="{% static 'user/images/logo.jpg' %}" style="width: 150px;" class="mr-2" alt="logo"/></a>
+        
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="ti-view-list"></span>
+        </button>
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                <span class="input-group-text" id="search">
+                  <i class="ti-search"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          
+          
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+              <span style="margin-right: 10px;">{{view.user_name}}</span>
+              <img src="/media/{{view.user_image}}" alt="profile"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              
+              <a class="dropdown-item" href="{% url 'logout' %}">
+                <i class="ti-power-off text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="ti-view-list"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:../../partials/_sidebar.html -->
+      
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'user_home' %}">
+              <i class="ti-shield menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'upload_file' %}">
+              <i class="ti-layout-list-post menu-icon"></i>
+              <span class="menu-title">Upload Files</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'token' %}">
+              <i class="ti-pie-chart menu-icon"></i>
+              <span class="menu-title">Token Request</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'search' %}">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Search Files</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'action' %}">
+              <i class="ti-user menu-icon"></i>
+              <span class="menu-title">Action</span>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="{% url 'req_files' %}">
+              <i class="ti-file menu-icon"></i>
+              <span class="menu-title">Requested Files</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">
+              <i class="ti-star menu-icon"></i>
+              <span class="menu-title">My Profile</span>
+            </a>
+          </li>
+         
+          
+        </ul>
+      </nav>
+      
+      <!-- partial -->
+      <div class="main-panel">          
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-lg-12  grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  
+                    <div class="row">
+                      <div class="col-lg-6   grid-margin">
+                        <div class="card">
+                          <div class="card-body">
+                            <h2 class="card-title text-center">Details</h2>
+                            <div >
+                               
+                                 
+                              <span><p>Name : <input type="text" style="border: none;" value="{{view.user_name}}"></p></span>
+                              
+                              <span><p>Email Id : <input type="text" style="border: none;" value="{{view.user_email}}"></p></span>
+                            
+                              <span><p>Phone : <input type="text" style="border: none;" value="{{view.user_phone}}"></p></span>
+                            
+                              <span><p>Password : <input type="password" autocomplete="current-password" id="id_password" style="border: none;" value="{{view.user_pwd}}"> <i style="margin-left: -30px; cursor: pointer;" id="togglePassword" class="far fa-eye" id="togglePassword"></i></p></span>
+                              
+                              <span><p>Token : <input type="text" style="border: none;" value="#"></p></span>
+                            </div>
+                              
+                          </div>
+                        </div>
+                      </div>  
+                      <div class="col-lg-6   grid-margin">
+                        <div class="card">
+                          <div class="card-body">
+                            <h4 class="card-title text-center">Profile Image</h4>
+                            <div class="text-center">
+                              <img src="/media/{{view.user_image}}" style="width: 250px; height: 155px; border-radius: 20px;" alt="profile"/>
+                            </div>
+                          </div>
+                        </div>
+                      </div>  
+                    </div>      
+                </div>
+            </div>            
+          </div>
+        </div>
+        
+        </div>
+
+
+
+
+        <!-- partial:../../partials/_footer.html -->
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright ©  <a href="https://www.codebook.in/" target="_blank">Codebook.In</a>. All rights reserved.</span>
+            
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+    </div>
+  </div>
+  <!-- plugins:js -->
+  <script src="{% static 'user/vendors/base/vendor.bundle.base.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="{% static 'user/js/off-canvas.js' %}"></script>
+  <script src="{% static 'user/js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'user/js/template.js' %}"></script>
+  <script src="{% static 'user/js/todolist.js' %}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <!-- End custom js for this page-->
+</body>
+<script>
+   const togglePassword = document.querySelector('#togglePassword');
+  const password = document.querySelector('#id_password');
+ 
+  togglePassword.addEventListener('click', function (e) {
+    // toggle the type attribute
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    // toggle the eye slash icon
+    this.classList.toggle('fa-eye-slash');
+});
+</script>
+
+
+</html>

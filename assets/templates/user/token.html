@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Token Request</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'user/vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'user/vendors/base/vendor.bundle.base.css' %}">
+  <!-- endinject -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'user/css/style.css' %}">
+ 
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static 'user/images/favicon.png' %}" />
+  <script src="{% static 'user/js/sweetalert.min.js' %}"></script>
+</head>
+
+<body>
+  <div class="container-scroller">
+    <!-- partial:../../partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo " href="{% url 'user_home' %}"><img src="{% static 'user/images/logo.jpg' %}" style="width: 150px;"  class="mr-2" alt="logo"/></a>
+        
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="ti-view-list"></span>
+        </button>
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                <span class="input-group-text" id="search">
+                  <i class="ti-search"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          
+          
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+              <span style="margin-right: 10px;">{{view.user_name}}</span>
+              <img src="/media/{{view.user_image}}" alt="profile"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              
+              <a class="dropdown-item" href="{% url 'logout' %}">
+                <i class="ti-power-off text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="ti-view-list"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:../../partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'user_home' %}">
+              <i class="ti-shield menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'upload_file' %}">
+              <i class="ti-layout-list-post menu-icon"></i>
+              <span class="menu-title">Upload Files</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">
+              <i class="ti-pie-chart menu-icon"></i>
+              <span class="menu-title">Token Request</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'search' %}">
+              <i class="ti-view-list-alt menu-icon"></i>
+              <span class="menu-title">Search Files</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'action' %}">
+              <i class="ti-user menu-icon"></i>
+              <span class="menu-title">Action</span>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="{% url 'req_files' %}">
+              <i class="ti-file menu-icon"></i>
+              <span class="menu-title">Requested Files</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'profile' %}">
+              <i class="ti-star menu-icon"></i>
+              <span class="menu-title">My Profile</span>
+            </a>
+          </li>
+          
+          
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-lg-6 offset-2 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Request Token</h4>
+                  <ul>
+                    <li>If Don't have Token, You can't Authorised Search Panael </li>
+                    <li>You Want a Token, Raise a Request<br> 
+                      {% if view1 == 'null' %}
+                      <a href="request/{{view.user_name}}/{{view.user_email}}"><button type="submit" class="btn btn-success mt-2">Request Token</button></a>
+                      {% elif view1 == 'Pending' %}
+                      <marquee style="width: 100%; color: #fc0404;" scrollamount="3" direction="right" 
+                      behavior="alternate">Your Request is Pending Please Wait...!</marquee>
+                      {% else %}
+                      <p class="mt-2">Here your Token Id :</p> <input type="text" id="myInput" value="{{view1}}">
+
+                      {% endif %}
+
+                    </li>
+                    <li class="mt-2">After Request, We send Token Through Your Email Id</li>
+                  </ul>
+                  
+                </div>
+              </div>
+            </div>
+            
+          </div>
+          
+          
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+
+        
+
+        <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright ©  <a href="https://www.codebook.in/" target="_blank">Codebook.In</a>. All rights reserved.</span>
+            
+          </div>
+        </footer>
+
+        
+
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="{% static 'user/vendors/base/vendor.bundle.base.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <script src="{% static 'user/vendors/chart.js/Chart.min.js' %}"></script>
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="{% static 'user/js/off-canvas.js' %}"></script>
+  <script src="{% static 'user/js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'user/js/template.js' %}"></script>
+  <script src="{% static 'user/js/todolist.js' %}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{% static 'user/js/chart.js' %}"></script>
+  <script>
+    {% for msg in messages %} 
+           
+       swal( "Server Response", "{{msg}}");
+      
+     {% endfor %} 
+   </script>
+  
+</body>
+
+</html>
